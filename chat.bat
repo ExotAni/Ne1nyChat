@@ -1,26 +1,20 @@
-echo off
-color 0a
-chcp 1251
 title Ne1nyChat
 
-set nick=Malki
-set history_direct=\\exotani\FreeForAll\Ne1nyChat
-
-if not exist %history_direct% color 0c && cls && echo No Radmin connection... && pause>nul && exit
-
-if not exist %history_direct%\mhistory.txt (
-    echo Ne1nyChat starting here ^<3>%history_direct%\mhistory.txt
-    echo. >>%history_direct%\mhistory.txt
+if not exist %direct%\mhistory.txt (
+    echo Ne1nyChat starting here ^<3>%direct%\mhistory.txt
+    echo. >>%direct%\mhistory.txt
 )
-cls
 
-start /b cmd /c massagecheck.bat
+start /b cmd /c %direct%\massagecheck.bat
 
 :main
-timeout /t 1 /nobreak>nul
-echo.
-set massage= 
-set /p massage=">>>"
-find "[Date: %date%]" %history_direct%\mhistory.txt>nul || echo [Date: %date%]>>%history_direct%\mhistory.txt
-echo [%time:~0,8%] %nick%: %massage%>>%history_direct%\mhistory.txt
+pause>nul
+    echo massage = inputbox("","Ne1nyChat")>sendmassage.vbs
+    echo if massage = "" then WScript.Quit>>sendmassage.vbs
+    echo Set FSO = CreateObject("Scripting.FileSystemObject")>>sendmassage.vbs
+    echo Set f = FSO.OpenTextFile("%direct%\mhistory.txt", 8, True)>>sendmassage.vbs
+    echo f.WriteLine("[%time:~0,8%] %nick%: " ^& massage)>>sendmassage.vbs
+    echo f.Close>>sendmassage.vbs
+find "[Date: %date%]" %direct%\mhistory.txt>nul || echo [Date: %date%]>>%direct%\mhistory.txt
+call sendmassage.vbs
 goto main
