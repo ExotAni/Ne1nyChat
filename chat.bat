@@ -5,8 +5,8 @@ if not exist %direct%\mhistory.txt (
     echo Ne1nyChat starting here ^<3>%direct%\mhistory.txt
     echo. >>%direct%\mhistory.txt
 )
-
-start /b cmd /c %direct%\online.bat>nul
+echo.>%direct%\online\%nick%
+start /b cmd /c cscript %direct%\online.vbs "%direct%\online\%nick%">nul
 start /b cmd /c %direct%\massagecheck.bat
 
 :main
@@ -50,9 +50,9 @@ exit /b
     echo     Set objFolder = objFSO.GetFolder("%direct%\online\")>>%appdata%\Ne1ny_temp\sendmassage.vbs
     echo     Set colFiles = objFolder.Files>>%appdata%\Ne1ny_temp\sendmassage.vbs
     echo     For Each objSubfolder in colFiles>>%appdata%\Ne1ny_temp\sendmassage.vbs
+    echo         On Error Resume Next>>%appdata%\Ne1ny_temp\sendmassage.vbs
     echo         errResults = objSubfolder.Delete>>%appdata%\Ne1ny_temp\sendmassage.vbs
     echo     Next>>%appdata%\Ne1ny_temp\sendmassage.vbs
-    echo     WScript.Sleep 1000>>%appdata%\Ne1ny_temp\sendmassage.vbs
     echo     For Each objFile in colFiles>>%appdata%\Ne1ny_temp\sendmassage.vbs
     echo         online = online ^& objFile.Name ^& vbcrlf>>%appdata%\Ne1ny_temp\sendmassage.vbs
     echo     Next>>%appdata%\Ne1ny_temp\sendmassage.vbs
