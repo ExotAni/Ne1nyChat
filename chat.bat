@@ -14,6 +14,7 @@ pause>nul
     echo Set FSO = CreateObject("Scripting.FileSystemObject")>>sendmassage.vbs
     echo Set f = FSO.OpenTextFile("%direct%\mhistory.txt", 8, True)>>sendmassage.vbs
     call :time_fix
+    call :time_zone_fix
     echo f.WriteLine("[%fixed_time%] %nick%: " ^& massage)>>sendmassage.vbs
     echo f.Close>>sendmassage.vbs
 find "[Date: %date%]" %direct%\mhistory.txt>nul || echo [Date: %date%]>>%direct%\mhistory.txt
@@ -26,3 +27,10 @@ if %time:~0,2% LSS 10 (
 ) else (
     set fixed_time=%time:~0,8%
 )
+exit /b
+
+:time_zone_fix
+set /a temp_time=(%fixed_time:~0,2% + (24+(-(0%time_zone%)))) %% 24
+if %temp_time% LSS 10 set temp_time=0%temp_time%
+set fixed_time=%temp_time%%fixed_time:~2,6%
+exit /b

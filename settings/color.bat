@@ -56,7 +56,7 @@ goto color
 :clear
 set color=%color:~0,1%
 set color=%color%%choice2%
-echo %color%>"%appdata%\ne1ny_color.txt"
+echo %color%>"%appdata%\Ne1ny_temp\ne1ny_color.txt"
 exit /b
 
 :echocolored

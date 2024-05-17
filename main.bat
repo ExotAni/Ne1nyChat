@@ -1,20 +1,23 @@
 cls
-call copy /y "%direct%\sounds\massage_sound.exe" "%cd%"
-if not exist "%appdata%\ne1ny_color.txt" echo 0a>"%appdata%\ne1ny_color.txt"
+md "%appdata%\Ne1ny_temp"
+if not exist "%appdata%\Ne1ny_temp\massage_sound.exe" call copy /y "%direct%\sounds\massage_sound.exe" "%appdata%\Ne1ny_temp\"
+if not exist "%appdata%\Ne1ny_temp\ne1ny_color.txt" echo 0a>"%appdata%\Ne1ny_temp\ne1ny_color.txt"
+if not exist "%appdata%\Ne1ny_temp\ne1ny_time.txt" echo +0>"%appdata%\Ne1ny_temp\ne1ny_time.txt"
 
-
-if exist "%appdata%\ne1ny_nick.txt" goto welcome
+cls
+if exist "%appdata%\Ne1ny_temp\ne1ny_nick.txt" goto welcome
     echo Insert your nickname:
     echo.
     set /p nick=">>>"
-    echo %nick%>%appdata%\ne1ny_nick.txt
+    echo %nick%>"%appdata%\Ne1ny_temp\ne1ny_nick.txt"
     cls
 
 :welcome
-set /p nick=<%appdata%\ne1ny_nick.txt
-title Ne1ny Menu
-set /p color=<"%appdata%\ne1ny_color.txt"
+set /p nick=<"%appdata%\Ne1ny_temp\ne1ny_nick.txt"
+set /p time_zone=<"%appdata%\Ne1ny_temp\ne1ny_time.txt"
+set /p color=<"%appdata%\Ne1ny_temp\ne1ny_color.txt"
 color %color%
+title Ne1ny Menu
 cls
 echo Welcome to the club, %nick%
 echo.
