@@ -13,7 +13,7 @@ title Ne1ny Menu
 cls
 echo Welcome to the club, %nick%
 echo.
-echo 1) Join to Ne1nyChat
+echo 1) Join Ne1nyChat
 echo 2) Settings
 echo 3) Exit
 set /p choice=">>>"
