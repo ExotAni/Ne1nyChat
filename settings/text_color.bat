@@ -48,12 +48,16 @@ call :echocolored %color:~0,1%7 "White"
 call :echocolored %color:~0,1%F "Bright White"
 echo ]
 echo.
+echo X = Back
+echo.
 set /p choice2=">>>"
-for %%K in (0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F,a,b,c,d,e,f,) do (
+for %%K in (0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F,X,a,b,c,d,e,f,x) do (
     if %choice2%==%%K goto clear
 )
 goto color
 :clear
+if %choice2%==x exit /b
+if %choice2%==X exit /b
 set color=%color:~0,1%
 set color=%color%%choice2%
 echo %color%>"%appdata%\Ne1ny_temp\ne1ny_color.txt"

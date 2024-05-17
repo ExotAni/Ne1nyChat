@@ -1,11 +1,11 @@
 for /F "tokens=1 delims=#" %%a in ('"prompt #$H#$E# & echo on & for %%b in (1) do     rem"') do (
   set "DEL=%%a"
 )
-title Background color change
+title Nick color change
 
 :color
 cls
-echo Select the background color:
+echo Select the color:
 echo.
 <nul set /p .="0 = ["
 call :echocolored 70 "Black"
@@ -58,9 +58,8 @@ goto color
 :clear
 if %choice2%==x exit /b
 if %choice2%==X exit /b
-set color=%color:~1,1%
-set color=%choice2%%color%
-echo %color%>"%appdata%\Ne1ny_temp\ne1ny_color.txt"
+set nick_color=%choice2%
+echo %nick_color% >"%appdata%\Ne1ny_temp\ne1ny_nick_color.txt"
 exit /b
 
 :echocolored

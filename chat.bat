@@ -1,9 +1,17 @@
 title Ne1nyChat
 
 if not exist "%direct%\online" md "%direct%\online"
-if not exist %direct%\mhistory.txt (
-    echo Ne1nyChat starting here ^<3>%direct%\mhistory.txt
-    echo. >>%direct%\mhistory.txt
+if not exist %direct%\mhistory.bat (
+    echo for /F "tokens=1 delims=#" %%%%a in ^('"prompt #$H#$E# & echo on & for %%%%b in (1) do     rem"'^) do ^(set "DEL=%%%%a"^)>%direct%\mhistory.bat
+    echo goto start>>%direct%\mhistory.bat
+    echo :echocolored>>%direct%\mhistory.bat
+    echo ^<nul set /p ".=%%DEL%%" ^> "%%~2">>%direct%\mhistory.bat
+    echo findstr /v /a:%%1 /R "^$" "%%~2" nul>>%direct%\mhistory.bat
+    echo del "%%~2" ^> nul 2^>^&1i>>%direct%\mhistory.bat
+    echo exit /b>>%direct%\mhistory.bat
+    echo :start>>%direct%\mhistory.bat
+    echo echo Ne1nyChat starting here ^^^<3>>%direct%\mhistory.bat
+    echo echo. >>%direct%\mhistory.bat
 )
 echo.>%direct%\online\%nick%
 start /b cmd /c cscript %direct%\online.vbs "%direct%\online\%nick%">nul
@@ -16,12 +24,15 @@ pause>nul
     call :commands
     echo end if>>%appdata%\Ne1ny_temp\sendmassage.vbs
     echo Set FSO = CreateObject("Scripting.FileSystemObject")>>%appdata%\Ne1ny_temp\sendmassage.vbs
-    echo Set f = FSO.OpenTextFile("%direct%\mhistory.txt", 8, True)>>%appdata%\Ne1ny_temp\sendmassage.vbs
+    echo Set f = FSO.OpenTextFile("%direct%\mhistory.bat", 8, True)>>%appdata%\Ne1ny_temp\sendmassage.vbs
     call :time_fix
     call :time_zone_fix
-    echo f.WriteLine("[%fixed_time%] %nick%: " ^& massage)>>%appdata%\Ne1ny_temp\sendmassage.vbs
+    echo On Error Resume Next>>%appdata%\Ne1ny_temp\sendmassage.vbs
+    echo f.WriteLine("<nul set /p .=""[%fixed_time%] """)>>%appdata%\Ne1ny_temp\sendmassage.vbs
+    echo f.WriteLine("call :echocolored %color:~0,1%%nick_color%""%nick% """)>>%appdata%\Ne1ny_temp\sendmassage.vbs
+    echo f.WriteLine("echo : " ^& massage)>>%appdata%\Ne1ny_temp\sendmassage.vbs
     echo f.Close>>%appdata%\Ne1ny_temp\sendmassage.vbs
-find "[Date: %date%]" %direct%\mhistory.txt>nul || echo [Date: %date%]>>%direct%\mhistory.txt
+find "[Date: %date%]" %direct%\mhistory.bat>nul || echo echo [Date: %date%]>>%direct%\mhistory.bat
 call %appdata%\Ne1ny_temp\sendmassage.vbs
 goto main
 
