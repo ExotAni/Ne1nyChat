@@ -9,16 +9,16 @@ start /b cmd /c %direct%\massagecheck.bat
 
 :main
 pause>nul
-    echo massage = inputbox("","Ne1nyChat")>sendmassage.vbs
-    echo if massage = "" then WScript.Quit>>sendmassage.vbs
-    echo Set FSO = CreateObject("Scripting.FileSystemObject")>>sendmassage.vbs
-    echo Set f = FSO.OpenTextFile("%direct%\mhistory.txt", 8, True)>>sendmassage.vbs
+    echo massage = inputbox("","Ne1nyChat")>%appdata%\Ne1ny_temp\sendmassage.vbs
+    echo if massage = "" then WScript.Quit>>%appdata%\Ne1ny_temp\sendmassage.vbs
+    echo Set FSO = CreateObject("Scripting.FileSystemObject")>>%appdata%\Ne1ny_temp\sendmassage.vbs
+    echo Set f = FSO.OpenTextFile("%direct%\mhistory.txt", 8, True)>>%appdata%\Ne1ny_temp\sendmassage.vbs
     call :time_fix
     call :time_zone_fix
-    echo f.WriteLine("[%fixed_time%] %nick%: " ^& massage)>>sendmassage.vbs
-    echo f.Close>>sendmassage.vbs
+    echo f.WriteLine("[%fixed_time%] %nick%: " ^& massage)>>%appdata%\Ne1ny_temp\sendmassage.vbs
+    echo f.Close>>%appdata%\Ne1ny_temp\sendmassage.vbs
 find "[Date: %date%]" %direct%\mhistory.txt>nul || echo [Date: %date%]>>%direct%\mhistory.txt
-call sendmassage.vbs
+call %appdata%\Ne1ny_temp\sendmassage.vbs
 goto main
 
 :time_fix

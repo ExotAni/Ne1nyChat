@@ -5,8 +5,8 @@ echo.
 <nul set /p strTemp=^>^>^>
 
 :massagecheck
-fc %direct%\mhistory.txt mhistory_b.txt>nul && goto massagecheck
-type %direct%\mhistory.txt > mhistory_b.txt
+fc %direct%\mhistory.txt %appdata%\Ne1ny_temp\mhistory_b.txt>nul && goto massagecheck
+type %direct%\mhistory.txt > %appdata%\Ne1ny_temp\mhistory_b.txt
 cls
 type %direct%\mhistory.txt
 echo.
