@@ -22,7 +22,7 @@ goto main
 
 :time_fix
 if %time:~0,2% LSS 10 (
-    set fixed_time=%time:~1,7%
+    set fixed_time=0%time:~1,7%
 ) else (
     set fixed_time=%time:~0,8%
 )

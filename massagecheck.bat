@@ -11,5 +11,5 @@ cls
 type %direct%\mhistory.txt
 echo.
 <nul set /p strTemp=^>^>^>
-start %direct%\sounds\massage_sound.exe
+start massage_sound.exe
 goto massagecheck

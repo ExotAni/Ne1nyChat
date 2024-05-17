@@ -1,5 +1,5 @@
 cls
-title Change the nickname
+title Change nickname
 echo Your current nickname: %nick%
 echo Insert your new nickname:
 echo.
